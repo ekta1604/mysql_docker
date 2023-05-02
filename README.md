@@ -37,6 +37,28 @@ This will fetch all the rows from the mytable table and store them in the result
 ```conn.close()``` 
 7. You can commit changes with ```conn.commit()```
 
+# Dockerize a Python script
+
+1. Create a Dockerfile: The Dockerfile is a script that contains instructions to build a Docker image. Create a new file called "Dockerfile" in the same directory as your Python script.
+2. Choose a base image: In the Dockerfile, specify the base image to use. You can use a pre-existing image from Docker Hub that has Python installed or use the official Python image. For example, you can use the official Python 3.9 image by adding the following line to your Dockerfile:```FROM python:3.9```
+3. Copy the Python script into the container: Use the COPY command in the Dockerfile to copy the Python script from your local machine to the container. For example, if your Python script is called "script.py" and is in the same directory as the Dockerfile, add the following line to your Dockerfile:```COPY script.py /app/```. This will copy the "script.py" file to a directory called "/app/" in the container.
+4. Install dependencies: If your Python script requires any dependencies, you will need to install them in the Docker image. You can use the RUN command in the Dockerfile to install any required packages. For example, if your script requires the numpy package, add the following line to your Dockerfile:``` RUN pip install numpy```
+5. Set the working directory: Use the WORKDIR command in the Dockerfile to set the working directory for the container. For example, if you want to set the working directory to "/app/", add the following line to your Dockerfile:``` WORKDIR /app/  ```
+6. Specify the command to run: Use the CMD command in the Dockerfile to specify the command to run when the container starts. For example, if you want to run the "script.py" file, add the following line to your Dockerfile:```CMD ["python", "script.py"]```
+7. Build the Docker image: Use the docker build command to build the Docker image. Run the command from the directory containing the Dockerfile and the Python script. For example, to build the image and tag it as "my-python-script", run the following command:```docker build -t my-python-script .```
+8. Run the Docker container: Use the docker run command to run the Docker container. For example, to run the "my-python-script" container, run the following command:```docker run my-python-script```This will start the container and run the "script.py" file.
+
+# Make docker compose file
+1. Create a new file named docker-compose.yml in your project directory.
+2. Define the services you want to use in your application.
+3. Specify the images or Dockerfiles for each service.
+4. Define the ports, volumes, and other configurations for each service.
+5. Optionally, define environment variables or other parameters for each service.
+6. Save the docker-compose.yml file.
+
+### docker-compose up -d 
+### docker-compose down
+
 
 
 
